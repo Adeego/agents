@@ -1,13 +1,6 @@
 "use client";
 
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Coins, Percent, UsersRound } from "lucide-react";
 import { useEffect, useState } from "react";
 
@@ -17,14 +10,14 @@ import {
   query,
   collection,
 } from "firebase/firestore";
-import app from "../../../../firebaseConfig";
+import app from "../../../firebaseConfig";
+import agentStore from "@/Store/AgentStore";
 import { formatPrice } from "@/lib/utils";
-import agentStore from "@/app/Store/UserStore";
 
 const Dashboard = () => {
   const { agent } = agentStore();
 
-  console.log(agent)
+  console.log(agent);
   const [clients, setClients] = useState([]);
   const [orders, setOrders] = useState([]);
   const [totalRevenue, SetTotalRevenue] = useState(0);

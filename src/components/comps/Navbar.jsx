@@ -1,6 +1,5 @@
-import { Bell, PanelLeft, UserRound } from "lucide-react";
+import { PanelLeft } from "lucide-react";
 import UserMenu from "./UserMenu";
-import Notifications from "./Notifications";
 
 const Navbar = () => {
   return (
@@ -11,9 +10,6 @@ const Navbar = () => {
         </button>
       </div>
       <div className="flex items-center gap-2">
-        {/* <div>
-          <Notifications />
-        </div> */}
         <div>
           <UserMenu />
         </div>
