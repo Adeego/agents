@@ -1,5 +1,6 @@
 import { PanelLeft } from "lucide-react";
 import UserMenu from "./UserMenu";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   return (

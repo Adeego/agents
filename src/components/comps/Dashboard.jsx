@@ -17,7 +17,9 @@ import { formatPrice } from "@/lib/utils";
 const Dashboard = () => {
   const { agent } = agentStore();
 
-  console.log(agent);
+  const { Code } = agent;
+  console.log(Code);
+
   const [clients, setClients] = useState([]);
   const [orders, setOrders] = useState([]);
   const [totalRevenue, SetTotalRevenue] = useState(0);

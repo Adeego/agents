@@ -1,3 +1,4 @@
+import agentStore from "@/Store/AgentStore";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -5,8 +6,12 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { UserRound } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const UserMenu = () => {
+  const logout = agentStore((state) => state.clearAgent);
+  const navigate = useNavigate();
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger className="size-10 text-neutral-700 hover:text-black grid place-items-center border border-neutral-200 rounded-full outline-none">
@@ -21,7 +26,14 @@ const UserMenu = () => {
           <DropdownMenuItem>Settings</DropdownMenuItem>
           <DropdownMenuItem>Support</DropdownMenuItem>
           <DropdownMenuSeparator /> */}
-        <DropdownMenuItem>Logout</DropdownMenuItem>
+        <DropdownMenuItem
+          onClick={() => {
+            navigate("/login");
+            logout();
+          }}
+        >
+          Logout
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );
