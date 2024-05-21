@@ -31,7 +31,7 @@ const Login = () => {
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
 
-  const setAgent = agentStore((state) => state.setAgent);
+  const { setAgent } = agentStore();
 
   const verifyAgent = async () => {
     try {
@@ -49,6 +49,7 @@ const Login = () => {
           alert("Invalid passcode");
         } else {
           const userData = querySnapshot.docs[0].data();
+
           const user = {
             FullName: userData.FullName,
             Phone: userData.Phone,
@@ -58,9 +59,8 @@ const Login = () => {
             Occupation: userData.Occupation,
             Id: userData.id,
           };
-          setAgent(user);
-
           console.log(user);
+          setAgent(user);
 
           toast(
             <div className="p-3 bg-white border border-neutral-300 rounded-[0.4rem] flex items-center gap-2 w-full">
@@ -77,7 +77,6 @@ const Login = () => {
       }
     } catch (err) {
       console.error(err);
-      console.log("error");
     }
   };
   return (

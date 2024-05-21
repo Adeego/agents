@@ -19,9 +19,12 @@ import {
 } from "firebase/firestore";
 import app from "../../../../firebaseConfig";
 import { formatPrice } from "@/lib/utils";
+import agentStore from "@/app/Store/UserStore";
 
-const Dashboard = ({ agent }) => {
-  const { FullName, Phone, Code, Wallet, Address, Occupation, Id } = agent;
+const Dashboard = () => {
+  const { agent } = agentStore();
+
+  console.log(agent)
   const [clients, setClients] = useState([]);
   const [orders, setOrders] = useState([]);
   const [totalRevenue, SetTotalRevenue] = useState(0);
@@ -44,7 +47,7 @@ const Dashboard = ({ agent }) => {
           }));
 
           const filteredUsers = users.filter(
-            (u) => u.ReferredBy !== null && u.ReferredBy == Code
+            (u) => u.ReferredBy !== null && u.ReferredBy == agent.Code
           );
           setClients(filteredUsers);
         });
@@ -163,8 +166,6 @@ const Dashboard = ({ agent }) => {
 };
 
 export default Dashboard;
-
-
 
 // !0725970724
 // !adeego.ltd@gmail.com
