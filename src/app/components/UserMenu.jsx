@@ -18,11 +18,11 @@ const UserMenu = () => {
         align="left"
         className="bg-white mr-4 rounded-[0.3rem] !w-36 shadow-neutral-100"
       >
-        <DropdownMenuLabel>My Account</DropdownMenuLabel>
-        <DropdownMenuSeparator />
+        {/* <DropdownMenuLabel>My Account</DropdownMenuLabel> */}
+        {/* <DropdownMenuSeparator />
         <DropdownMenuItem>Settings</DropdownMenuItem>
         <DropdownMenuItem>Support</DropdownMenuItem>
-        <DropdownMenuSeparator />
+        <DropdownMenuSeparator /> */}
         <DropdownMenuItem>Logout</DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

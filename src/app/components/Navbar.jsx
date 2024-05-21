@@ -11,9 +11,9 @@ const Navbar = () => {
         </button>
       </div>
       <div className="flex items-center gap-2">
-        <div>
+        {/* <div>
           <Notifications />
-        </div>
+        </div> */}
         <div>
           <UserMenu />
         </div>
