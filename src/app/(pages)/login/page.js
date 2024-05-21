@@ -49,17 +49,17 @@ const Login = () => {
           alert("Invalid passcode");
         } else {
           const userData = querySnapshot.docs[0].data();
+
           const user = {
-            Phone: userData.Phone,
-            Code: userData.Code,
-            Wallet: userData.Wallet,
-            Address: userData.Address,
-            Occupation: userData.Occupation,
-            Id: userData.id,
+            FullName: userData.FullName || "",
+            Phone: userData.Phone || "",
+            Code: userData.Code || "",
+            Wallet: userData.Wallet || "",
+            Address: userData.Address || "",
+            Occupation: userData.Occupation || "",
+            Id: userData.id || "",
           };
           setAgent(user);
-
-          console.log(user);
 
           toast(
             <div className="p-3 bg-white border border-neutral-300 rounded-[0.4rem] flex items-center gap-2 w-full">
