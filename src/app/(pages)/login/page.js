@@ -96,7 +96,7 @@ const Login = () => {
               type="text"
               placeholder="Phone number"
               value={phone}
-              onChange={(e) => setPhone(e.target.value)}
+              // onChange={(e) => setPhone(e.target.value)}
               className="input"
               required
             />
