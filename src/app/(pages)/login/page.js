@@ -31,7 +31,7 @@ const Login = () => {
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
 
-  const setAgent = agentStore((state) => state.setAgent);
+  const { setAgent } = agentStore();
 
   const verifyAgent = async () => {
     try {
@@ -50,26 +50,16 @@ const Login = () => {
         } else {
           const userData = querySnapshot.docs[0].data();
 
-          // const user = {
-          //   FullName: userData.FullName || "",
-          //   Phone: userData.Phone || "",
-          //   Code: userData.Code || "",
-          //   Wallet: userData.Wallet || "",
-          //   Address: userData.Address || "",
-          //   Occupation: userData.Occupation || "",
-          //   Id: userData.id || "",
-          // };
-
           const user = {
-            FullName: "Jeff",
-            Phone: "824829",
-            Code: "ohfaeivn",
-            Wallet: "399",
-            Address: ";akvkwsj",
-            Occupation: "kjwfkjw",
-            Id: "2",
+            FullName: userData.FullName,
+            Phone: userData.Phone,
+            Code: userData.Code,
+            Wallet: userData.Wallet,
+            Address: userData.Address,
+            Occupation: userData.Occupation,
+            Id: userData.id,
           };
-
+          console.log(user);
           setAgent(user);
 
           toast(
@@ -87,7 +77,6 @@ const Login = () => {
       }
     } catch (err) {
       console.error(err);
-      console.log("error");
     }
   };
   return (
@@ -107,7 +96,7 @@ const Login = () => {
               type="text"
               placeholder="Phone number"
               value={phone}
-              // onChange={(e) => setPhone(e.target.value)}
+              onChange={(e) => setPhone(e.target.value)}
               className="input"
               required
             />
