@@ -21,7 +21,7 @@ import app from "../../../../firebaseConfig";
 import { formatPrice } from "@/lib/utils";
 
 const Dashboard = ({ agent }) => {
-  const { FullName, Phone, Code, Wallet, Address, Occupation, Id } = agent;
+  const {  Phone, Code, Wallet, Address, Occupation, Id } = agent;
   const [clients, setClients] = useState([]);
   const [orders, setOrders] = useState([]);
   const [totalRevenue, SetTotalRevenue] = useState(0);

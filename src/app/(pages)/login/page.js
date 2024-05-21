@@ -50,7 +50,6 @@ const Login = () => {
         } else {
           const userData = querySnapshot.docs[0].data();
           const user = {
-            FullName: userData.FullName,
             Phone: userData.Phone,
             Code: userData.Code,
             Wallet: userData.Wallet,
