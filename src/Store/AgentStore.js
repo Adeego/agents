@@ -1,5 +1,5 @@
-import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
+import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
 const agentStore = create(
   persist(
@@ -9,8 +9,8 @@ const agentStore = create(
       clearAgent: () => set({ agent: null }),
     }),
     {
-      name: 'agentStore',
-      Storage: () => localStorage
+      name: "agentStore",
+      Storage: () => localStorage,
     }
   )
 );

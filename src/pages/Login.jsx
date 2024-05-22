@@ -1,6 +1,3 @@
-"use client";
-
-import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -12,8 +9,8 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-import app from "../../../../firebaseConfig";
 import {
   getFirestore,
   collection,
@@ -22,15 +19,15 @@ import {
   getDocs,
 } from "firebase/firestore";
 
-import agentStore from "@/app/Store/UserStore";
 import { CircleCheck } from "lucide-react";
-import { redirect } from "next/navigation";
 import { toast } from "sonner";
+import agentStore from "../Store/AgentStore";
+import app from "../../firebaseConfig";
 
 const Login = () => {
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
-
+  const navigate = useNavigate();
   const { setAgent } = agentStore();
 
   const verifyAgent = async () => {
@@ -72,13 +69,14 @@ const Login = () => {
             </div>
           );
 
-          redirect("/");
+          navigate("/");
         }
       }
     } catch (err) {
       console.error(err);
     }
   };
+
   return (
     <main className="w-full pt-40 md:h-screen md:pt-0 flex items-center justify-center">
       <Card className="w-full max-w-sm card">
@@ -131,3 +129,4 @@ const Login = () => {
 };
 
 export default Login;
+
