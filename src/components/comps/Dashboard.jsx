@@ -9,6 +9,7 @@ import {
   onSnapshot,
   query,
   collection,
+  where,
 } from "firebase/firestore";
 import app from "../../../firebaseConfig";
 import agentStore from "@/Store/AgentStore";
@@ -16,9 +17,10 @@ import { formatPrice } from "@/lib/utils";
 
 const Dashboard = () => {
   const { agent } = agentStore();
+  // console.log(agent)
 
-  const { Code } = agent;
-  console.log(Code);
+  // const Code = agent;
+  // console.log(Code);
 
   const [clients, setClients] = useState([]);
   const [orders, setOrders] = useState([]);
@@ -63,40 +65,41 @@ const Dashboard = () => {
 
   useEffect(() => {
     let unsubscribe;
-
+  
     const fetchData = async () => {
       try {
         const db = getFirestore(app);
         const orderRef = collection(db, "Orders");
-
-        const q = query(orderRef); // change user to agents.
-
+  
+        const q = query(orderRef, 
+          where("Status", "==", "Delivered"),
+          where("ReferredBy", "==", agent.Code) // assuming agent has a property 'Code'
+        );
+  
         unsubscribe = onSnapshot(q, (querySnapshot) => {
           const orders = querySnapshot.docs.map((doc) => ({
             id: doc.id,
             ...doc.data(),
           }));
-          const filteredOrders = orders.filter(
-            (o) => o.UserId === clients.map((c) => c.id)
-          );
-          const amounts = filteredOrders.map((a) => a.TotalAmount);
-
+  
+          setOrders(orders); // directly set orders without filtering by client IDs
+  
+          const amounts = orders.filter((o) => o.TotalAmount).map((a) => a.TotalAmount);
+  
           const totalAmountSpent =
-            filteredOrders.length > 0 ? amounts.reduce((a, b) => a + b) : 0;
-          const revenue = totalAmountSpent * 0.018;
+            amounts.length > 0 ? amounts.reduce((a, b) => a + b) : 0;
+          const revenue = totalAmountSpent * 0.017;
           const orderAvg = totalAmountSpent / orders.length;
-
-          SetOrderAverage(orderAvg);
+  
+          SetOrderAverage(orderAvg? orderAvg : 0);
           SetTotalRevenue(revenue);
-          setOrders(filteredOrders);
         });
-
-        // No need to return unsubscribe here
+  
       } catch (error) {}
     };
-
+  
     fetchData();
-
+  
     // Cleanup function to detach the listener on unmount
     return () => {
       if (unsubscribe) {
