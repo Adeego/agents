@@ -41,9 +41,9 @@ const Login = () => {
       if (querySnapshot.empty) {
         alert(`${phone} does not exist! Sign up`);
       } else {
-        const pass = querySnapshot.docs[0].data().Code;
+        const pass = querySnapshot.docs[0].data().Password;
         if (pass != password) {
-          alert("Invalid passcode");
+          alert("Invalid password");
         } else {
           const userData = querySnapshot.docs[0].data();
 
